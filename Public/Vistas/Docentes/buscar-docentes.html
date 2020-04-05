@@ -1,44 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST" id="frm-buscar-docentes">
-        <div class="card text-white bg-info " style="max-width: 48rem;">
-            <div class="car-header">
-                BUSQUEDA DOCENTES
-    
-                <button type="button" id="btn-close-buscar-docentes" class="close close-docentes" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="card-body">
-                <table id="tbl-buscar-docente" class="table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th colspan="5">
-                                <input type="text" id="txtBuscardocente" placeholder="codigo, nombre o NIT" class="form-control">
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>CODIGO</th>
-                            <th>NOMBRE</th>
-                            <th>DIRECCION</th>
-                            <th>TELEFONO</th>
-                            <th>NIT</th>
-                            <th colspan="2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table>
-            </div>
+<form method="POST" id="frm-buscar-docentes">
+    <div class="card text-white bg-info" style="max-width: 48rem;">
+        <div class="car-header text-center">
+            BUSQUEDA DOCENTES
+
+            <button type="button" id="btn-close-buscar-docentes" v-on:click="cerrarBuscarDocentes" class="close close-docentes" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    </form>
+        <div class="card-body">
+            <table id="tbl-buscar-docentes" class="table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="5">
+                            <input type="text" v-model="valor" v-on:keyup="buscarDocentes" id="txtBuscarDocente" placeholder="Codigo, Nombre o NIT" class="form-control">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>CODIGO</th>
+                        <th>NOMBRE</th>
+                        <th>DIRECCION</th>
+                        <th>TELEFONO</th>
+                        <th>NIT</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr v-for="docentes in data_docentes" :key="docentes.id_docentes">
+                        <td>{{ docentes.codigo }}</td>
+                        <td>{{ docentes.nombre }}</td>
+                        <td>{{ docentes.direccion }}</td>
+                        <td>{{ docentes.telefono }}</td>
+                        <td>{{ docentes.NIT }}</td>
+                        <td>
+                            <input v-on:click="verificacionEliminacion(docentes.id_docentes)" type="button" class="btn btn-outline-danger text-white" value="Delete">
+                            <input v-on:click="modificarDocente(docentes)" type="button" class="btn btn-outline-warning text-white" value="Update">
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
-</body>
-</html>
+</form>
+</div>
+
+<script src="Public/Vistas/Docentes/buscar-docentes.js"></script>

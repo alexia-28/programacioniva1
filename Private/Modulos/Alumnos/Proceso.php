@@ -51,7 +51,7 @@ class alumno{
                         nombre     = "'. $this->datos['nombre'] .'",
                         direccion  = "'. $this->datos['direccion'] .'",
                         telefono   = "'. $this->datos['telefono'] .'"
-                    WHERE id_alumno = "'. $this->datos['id'] .'"
+                    WHERE id_alumno = "'. $this->datos['id_alumno'] .'"
                 ');
                 $this->respuesta['msg'] = 'Registro actualizado correctamente';
             }

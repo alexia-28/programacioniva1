@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <form data-action="nuevo" data-iddocentes="" method="get" id="formularioDocentes">
+    <form v-on:submit.prevent=" guardarDocentes" data-action="nuevo" data-iddocentes="" method="get" id="formularioDocentes">
         <div class="card bg-info" style="max-width: 24rem;">
-            <div class="card-header">
+            <div class="card-header text-center">
              Mantenimiento Docentes
-             <button type="button" class="close close-Docentes" aria-label="close">
+             <button type="button" id="close-Docentes" class="close close-Docentes" aria-label="close">
                 <span arial-hidden="true">&times;</span>
 
 
@@ -21,47 +21,48 @@
               <div class="row p-2">
                   <div class="col-4">codigo</div>
                   <div class="col-8">
-                      <input type="text" name="" id="txtcodigodocente" placeholder="codigo" class="form-control">
+                      <input type="text" name="" v-model="docentes.codigo" id="txtcodigodocente" placeholder="codigo" class="form-control">
                   </div>
               </div>
               <div class="row p-2">
                   <div class="col-4">nombre</div>
                   <div class="col-8">
-                      <input type="text" name="" placeholder="nombre" class="form-control" id="txtnombredocente">
+                      <input type="text" name="" v-model="docentes.nombre" placeholder="nombre" class="form-control" id="txtnombredocente">
                   </div>
               </div>
               <div class="row p-2">
                   <div class="col-4">direccion</div>
                   <div class="col-8">
-                      <input type="text" name="" placeholder="direccion" class="form-control" id="txtdirecciondocente">
+                      <input type="text" name="" v-model="docentes.direccion" placeholder="direccion" class="form-control" id="txtdirecciondocente">
                   </div>
               </div>
               <div class="row p-2">
                   <div class="col-4">telefono</div>
                   <div class="col-8">
-                      <input type="text" name="" placeholder="telefono" class="form-control" id="txttelefonodocente">
+                      <input type="text" name="" v-model="docentes.telefono" placeholder="telefono" class="form-control" id="txttelefonodocente">
                   </div>
               </div>
               <div class="row p-2">
                 <div class="col-4">NIT</div>
                 <div class="col-8">
-                    <input type="text" name="" placeholder="NIT" class="form-control" id="txtnitdocente">
+                    <input type="text" name="" v-model="docentes.NIT" placeholder="NIT" class="form-control" id="txtnitdocente">
                 </div>
             </div>
               <div class="row p-2">
                   <div class="col-12 text-center">
                       <input type="submit" value="guardar"  class="btn btn-outline-primary text-white">
                       <input type="reset" value="limpiar" class="btn btn-outline-warning text-white">
-                      <input type="button" value="buscar" id="btnbuscar-docente" class="btn btn-outline-success mostrar-buscardocente text-white" data-modulo="Docentes" data-form="buscar-docente">
-                      
-
+                      <input V-on:click="buscarDocentes" type="button" value="buscar" id="btnbuscar-docente" class="btn btn-outline-success mostrar-buscardocente text-white" data-modulo="Docentes" data-form="buscar-docente">
+                
 
                   </div>
                   
               </div>
               <div class="row p-2">
                   <div class="col-12 text-center">
-                    <div id="respuestadocente"></div>
+                    <div class="alert alert-success" role="alert">
+                        {{  docentes.msg    }}
+                    </div>
                   </div>
                  
               </div>
@@ -69,6 +70,6 @@
             </div>
           </div>
     </form>
-    <div class="modulo-vistas-docente"></div>
+    <script src="Public/Vistas/Docentes/Docentes.js"></script>
 </body>
 </html>

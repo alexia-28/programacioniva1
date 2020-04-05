@@ -6,7 +6,7 @@
     if( isset($_GET['proceso']) && strlen($_GET['proceso'])>0 ){
         $proceso = $_GET['proceso'];
     }
-    $docentes->$proceso( $_GET['docentes'] );
+    $docentes->$proceso( $_GET['docente'] );
     print_r(json_encode($docentes->respuesta));
     
     class docentes{
@@ -56,7 +56,7 @@
                             direccion  = "'. $this->datos['direccion'] .'",
                             telefono   = "'. $this->datos['telefono'] .'",
                             NIT   = "'. $this->datos['NIT'] .'"
-                        WHERE id_docentes = "'. $this->datos['id'] .'"
+                        WHERE id_docentes = "'. $this->datos['id_docentes'] .'"
                     ');
                     $this->respuesta['msg'] = 'Registro actualizado correctamente';
                 }
@@ -66,7 +66,7 @@
             $this->db->consultas('
                 select docentes.id_docentes, docentes.codigo, docentes.nombre, docentes.direccion, docentes.telefono, docentes.NIT
                 from docentes
-                where docentes.codigo like "%'.$valor.'%" or docentes.nombre like "%'.$valor.'%"
+                where docentes.codigo like "%'.$valor.'%" or docentes.nombre like "%'.$valor.'%" or docentes.NIT like "%'.$valor.'%"
             ');
             return $this->respuesta = $this->db->obtener_datos();
         }
